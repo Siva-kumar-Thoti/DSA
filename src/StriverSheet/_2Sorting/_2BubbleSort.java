@@ -1,6 +1,6 @@
 package StriverSheet._2Sorting;
 
-public class BubbleSort {
+public class _2BubbleSort {
 
   public static void main(String[] args) {
     int[] a = {64, 25, 12, 22, 11};
