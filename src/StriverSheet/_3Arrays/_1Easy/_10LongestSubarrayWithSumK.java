@@ -1,0 +1,29 @@
+package StriverSheet._3Arrays._1Easy;
+
+import java.util.HashMap;
+
+public class _10LongestSubarrayWithSumK {
+   static int longestSubarray(int[] a, int k) {
+    int res=0,n=a.length,sum=0;
+    HashMap<Integer,Integer> mp=new HashMap<>();
+    mp.put(0,-1);
+    for(int i=0;i<n;i++){
+      sum+=a[i];
+      if(mp.containsKey(sum-k)){
+        res=Math.max(res,i-mp.get(sum-k));
+      }
+
+      if(!mp.containsKey(sum)){
+        mp.put(sum,i);
+      }
+    }
+
+    return res;
+  }
+
+  public static void main(String[] args) {
+    int[] a={10, 5, 2, 7, 1, -10};
+    System.out.println(longestSubarray(a,15));
+  }
+
+}
