@@ -21,9 +21,30 @@ public class _10LongestSubarrayWithSumK {
     return res;
   }
 
+  static  int longestSubarrayOnlyPositive(int[] a, int k) {
+     int res=0,n=a.length,sum=0;
+
+     int l=0,r=0;
+
+     while(r<n){
+       sum+=a[r];
+       if(sum==k){
+         res=Math.max(res,r-l+1);
+       }
+       else if(sum>k){
+         while(sum>k && l<=r){
+           sum-=a[l++];
+         }
+       }
+       r++;
+     }
+
+     return res;
+  }
+
   public static void main(String[] args) {
-    int[] a={10, 5, 2, 7, 1, -10};
-    System.out.println(longestSubarray(a,15));
+    int[] a={10, 5, 2, 7, 1};
+    System.out.println(longestSubarrayOnlyPositive(a,15));
   }
 
 }
