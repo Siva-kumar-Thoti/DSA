@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& a, int t) {
+        long long sum,n=a.size();
+        vector<vector<int>> r;
+        sort(a.begin(),a.end());
+        for(int i=0;i<n-3;i++){
+            for(int j=i+1;j<n-2;j++){
+                int k=j+1;
+                int l=n-1;
+                while(k<l){
+                    sum=(long long)a[i]+a[j]+a[k]+a[l];
+                    if(sum==t){
+                        r.push_back({a[i],a[j],a[k],a[l]});
+                        while(k<l && a[k]==a[k+1])
+                        k++;
+                        while(k<l && a[l]==a[l-1])
+                        l--;
+                        k++;l--;
+                    } else if(sum>t)
+                        l--;
+                    else k++;
+                }
+                while(j<n-2 && a[j]==a[j+1])
+                j++;
+            }
+            while(i<n-3 && a[i]==a[i+1])
+            i++;
+        }
+        return r;
+    }
+};
