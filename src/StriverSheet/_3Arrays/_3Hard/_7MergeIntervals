@@ -9,8 +9,7 @@ public:
         for(int i=1;i<n;i++){
             if(a[c][1]<a[i][0]){
                 c++;
-                a[c][0]=a[i][0];
-                a[c][1]=a[i][1];
+                a[c]=a[i];
             }
             else if(a[c][1]<a[i][1]){
                 a[c][1]=a[i][1];
