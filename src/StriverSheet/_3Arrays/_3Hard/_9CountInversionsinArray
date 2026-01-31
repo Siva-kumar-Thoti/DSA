@@ -1,0 +1,42 @@
+typedef long long ll;
+
+class Solution {
+public:
+   long long int numberOfInversions(vector<int> a) {
+        int n=a.size();
+        ll r;
+        return mergeSort(a,0,n-1);
+    }
+
+    ll mergeSort(vector<int> a, int l, int r){
+        if(l>=r) return 0;
+        int mid=l+(r-l)/2;
+        ll x=mergeSort(a,l,mid);
+        ll y=mergeSort(a,mid+1,r);
+        return x+y+merge(a,l,mid,r);
+    }
+
+    ll merge(vector<int> a,int l,int mid,int r){
+        vector<int> x,y;
+        for(int i=l;i<=mid;i++)
+        x.push_back(a[i]);
+        for(int i=mid+1;i<=r;i++)
+        y.push_back(a[i]);
+
+        int i=0,j=0,k=l,m,n;
+        ll cnt=0;
+        m=x.size();n=y.size();
+        while(i<m && j<n){
+            if(x[i]<=y[j])
+            a[k++]=x[i++];
+            else {
+                a[k++]=y[j++];
+                cnt+=m-i;
+            }
+        }
+
+        while(i<m) a[k++]=x[i++];
+        while(j<n) a[k++]=y[j++];
+        return cnt;
+    }
+};
