@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    int upperBound(vector<int>& a, int x) {
+        int l=0,r=a.size()-1,ans=a.size();
+
+        while(l<=r){
+            int mid=l+(r-l)/2;
+            if(a[mid]>x) {
+                r=mid-1;
+            }
+            else {
+                ans=mid;
+                l=mid+1;
+            }
+        }
+
+        while(ans<a.size() && a[ans]<=x) ans++;
+
+        return ans;
+
+    }
+};
+

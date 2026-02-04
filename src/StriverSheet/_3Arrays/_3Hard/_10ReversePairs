@@ -1,0 +1,47 @@
+class Solution {
+public:
+    int reversePairs(vector<int>& a) {
+        return mergeSort(a,0,a.size()-1);
+    }
+
+    long long mergeSort(vector<int> &a, int l, int r) {
+        if (l >= r) return 0;
+        int mid = l + (r - l) / 2;
+        long long left = mergeSort(a, l, mid);
+        long long right = mergeSort(a, mid + 1, r);
+        long long cross = merge(a, l, mid, r);
+        return left + right + cross;
+    }
+
+    long long merge(vector<int> &a, int l, int mid, int r) {
+        int j=mid+1;
+        long long cnt = 0;
+        for(int i=l;i<=mid;i++){
+
+            while(j<=r && (long long)a[i]>2*(long long)a[j])j++;
+            cnt+=j-mid-1;
+        }
+
+
+        vector<int> L(a.begin() + l, a.begin() + mid + 1);
+        vector<int> R(a.begin() + mid + 1, a.begin() + r + 1);
+
+        int i = 0, k = l; j=0;
+        int m = (int)L.size(), n = (int)R.size();
+
+
+
+
+
+        while (i < m && j < n) {
+            if (L[i] <= R[j]) {
+                a[k++] = L[i++];
+            } else {
+                a[k++] = R[j++];
+            }
+        }
+        while (i < m) a[k++] = L[i++];
+        while (j < n) a[k++] = R[j++];
+        return cnt;
+    }
+};
