@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int findMin(vector<int>& a) {
+        int n=a.size();
+
+        int l=0,r=n-1,mini=a[0];
+
+        while(l<=r){
+            int mid=l+(r-l)/2;
+
+            if(a[l]<=a[mid]){       // why === ???
+                mini=min(mini,a[l]);
+                l=mid+1;
+            } else {
+                mini=min(mini,a[mid]);
+                r=mid-1;
+            }
+        }
+
+        return mini;
+
+    }
+};
